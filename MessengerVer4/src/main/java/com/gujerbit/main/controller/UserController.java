@@ -32,6 +32,8 @@ public class UserController {
 
 		int result = service.login(map);
 		
+		System.out.println(result);
+		
 		return result;
 	}
 

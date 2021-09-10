@@ -22,6 +22,7 @@ public class MessageController {
 	@GetMapping("/view_message/{limit}")
 	public @ResponseBody List<MessageVO> getMessageList(@PathVariable int limit) {
 		List<MessageVO> list = service.selectMessageList(limit);
+		System.out.println("safsadf");
 		
 		return list;
 	}
