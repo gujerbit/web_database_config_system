@@ -7,8 +7,8 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.gujerbit.main.service.UserServiceImpl;
@@ -20,8 +20,8 @@ public class UserController {
 	@Autowired
 	private UserServiceImpl service;
 	
-	@GetMapping("/login/{loginInfo}")
-	public @ResponseBody int loginProcess(@PathVariable String[] loginInfo) {
+	@PostMapping("/login")
+	public @ResponseBody int loginProcess(@RequestBody String[] loginInfo) {
 		String id = loginInfo[0];
 		String originPassword = loginInfo[1];
 		String salt = service.selectSalt(id);
@@ -31,8 +31,6 @@ public class UserController {
 		map.put("password", hashing(originPassword, salt));
 
 		int result = service.login(map);
-		
-		System.out.println(result);
 		
 		return result;
 	}

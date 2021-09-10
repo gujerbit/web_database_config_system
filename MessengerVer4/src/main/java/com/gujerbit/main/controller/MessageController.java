@@ -1,6 +1,8 @@
 package com.gujerbit.main.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,7 +24,6 @@ public class MessageController {
 	@GetMapping("/view_message/{limit}")
 	public @ResponseBody List<MessageVO> getMessageList(@PathVariable int limit) {
 		List<MessageVO> list = service.selectMessageList(limit);
-		System.out.println("safsadf");
 		
 		return list;
 	}
@@ -30,6 +31,23 @@ public class MessageController {
 	@GetMapping("/view_message_size")
 	public @ResponseBody int getMessageSize() {
 		int size = service.selectMessageSize();
+		
+		return size;
+	}
+	
+	@GetMapping("/view_search_message/{searchInfo}")
+	public @ResponseBody List<MessageVO> getSearchMessage(@PathVariable String[] searchInfo) {
+		Map<String, String> map = new HashMap<>();
+		map.put("searchData", searchInfo[0]);
+		map.put("limit", searchInfo[1]);
+		List<MessageVO> list = service.selectSearchMessage(map);
+		
+		return list;
+	}
+	
+	@GetMapping("/view_search_message_size/{searchData}")
+	public @ResponseBody int getSearchMessageSize(@PathVariable String searchData) {
+		int size = service.selectSearchMessageSize(searchData);
 		
 		return size;
 	}

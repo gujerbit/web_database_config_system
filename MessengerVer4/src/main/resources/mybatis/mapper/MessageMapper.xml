@@ -9,4 +9,25 @@
 	<select id="selectMessageSize" resultType="int">
 		SELECT COUNT(idx) FROM room
 	</select>
+	
+	<select id="selectSearchMessage" resultType="MessageVO">
+		SELECT * FROM room
+		<where>
+			idx LIKE CONCAT('%', #{searchData}, '%') OR
+			room_id LIKE CONCAT('%', #{searchData}, '%') OR
+			id LIKE CONCAT('%', #{searchData}, '%') OR
+			message LIKE CONCAT('%', #{searchData}, '%')
+		</where>
+		LIMIT ${limit}, 10
+	</select>
+	
+	<select id="selectSearchMessageSize" resultType="int">
+		SELECT COUNT(idx) FROM room
+		<where>
+			idx LIKE CONCAT('%', #{searchData}, '%') OR
+			room_id LIKE CONCAT('%', #{searchData}, '%') OR
+			id LIKE CONCAT('%', #{searchData}, '%') OR
+			message LIKE CONCAT('%', #{searchData}, '%')
+		</where>
+	</select>
 </mapper>

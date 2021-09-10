@@ -1,6 +1,7 @@
 package com.gujerbit.main.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,6 +23,16 @@ public class MessageServiceImpl implements MessageService {
 	@Override
 	public int selectMessageSize() {
 		return dao.selectMessageSize();
+	}
+	
+	@Override
+	public List<MessageVO> selectSearchMessage(Map<String, String> map) {
+		return dao.selectSearchMessage(map);
+	}
+	
+	@Override
+	public int selectSearchMessageSize(String searchData) {
+		return dao.selectSearchMessageSize(searchData);
 	}
 	
 }
