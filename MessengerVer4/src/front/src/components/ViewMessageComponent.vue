@@ -1,5 +1,5 @@
 <template>
-  <div id="wrap" v-if="success > 0">
+  <div id="wrap">
       <div class="message-list" v-for="(value, index) in messageInfo" :key="value">
           <div class="title-area" v-if="index === 0">
               <p class="title">INDEX</p>
@@ -44,10 +44,10 @@ export default {
     },
     methods: {
         async getMessage() {
-            let { data: messages } = await this.axios.get(`/view_message/${(this.limit - 1) * 10}`);
+            let { data: messages } = await this.axios.get(`/view/view_message/${(this.limit - 1) * 10}`);
             this.messageInfo = messages;
 
-            let { data: size } = await this.axios.get(`/view_message_size`);
+            let { data: size } = await this.axios.get(`/view/view_message_size`);
             let maxPage = Math.ceil(size / 10);
             let temp = [];
             this.currentPages = [];
@@ -100,10 +100,10 @@ export default {
             }
 
             if(this.searchData !== '') {
-                let { data: size } = await this.axios.get(`/view_search_message_size/${this.searchData}`);
+                let { data: size } = await this.axios.get(`/view/view_search_message_size/${this.searchData}`);
                 if((this.limit - 1) * 10 > size) this.limit = 1;
                 let searchInfo = [this.searchData, (this.limit - 1) * 10];
-                let { data: message } = await this.axios.get(`/view_search_message/${searchInfo}`);
+                let { data: message } = await this.axios.get(`/view/view_search_message/${searchInfo}`);
                 this.messageInfo = message;
 
                 let maxPage = Math.ceil(size / 10);
@@ -121,10 +121,10 @@ export default {
                     }
                 }
             } else {
-                let { data: message } = await this.axios.get(`/view_message/${(this.limit - 1) * 10}`);
+                let { data: message } = await this.axios.get(`/view/view_message/${(this.limit - 1) * 10}`);
                 this.messageInfo = message;
 
-                let { data: size} = await this.axios.get(`/view_message_size`);
+                let { data: size} = await this.axios.get(`/view/view_message_size`);
                 let maxPage = Math.ceil(size / 10);
                 let temp = [];
                 this.currentPages = [];
@@ -141,8 +141,7 @@ export default {
                 }
             }
         }
-    },
-    props: ['success'],
+    }
 }
 </script>
 

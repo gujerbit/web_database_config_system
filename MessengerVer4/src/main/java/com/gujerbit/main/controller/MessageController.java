@@ -21,21 +21,26 @@ public class MessageController {
 	@Autowired
 	private MessageServiceImpl service;
 	
-	@GetMapping("/view_message/{limit}")
+	@GetMapping("/view")
+	public String init() {
+		return "";
+	}
+	
+	@GetMapping("/view/view_message/{limit}")
 	public @ResponseBody List<MessageVO> getMessageList(@PathVariable int limit) {
 		List<MessageVO> list = service.selectMessageList(limit);
 		
 		return list;
 	}
 	
-	@GetMapping("/view_message_size")
+	@GetMapping("/view/view_message_size")
 	public @ResponseBody int getMessageSize() {
 		int size = service.selectMessageSize();
 		
 		return size;
 	}
 	
-	@GetMapping("/view_search_message/{searchInfo}")
+	@GetMapping("/view/view_search_message/{searchInfo}")
 	public @ResponseBody List<MessageVO> getSearchMessage(@PathVariable String[] searchInfo) {
 		Map<String, String> map = new HashMap<>();
 		map.put("searchData", searchInfo[0]);
@@ -45,7 +50,7 @@ public class MessageController {
 		return list;
 	}
 	
-	@GetMapping("/view_search_message_size/{searchData}")
+	@GetMapping("/view/view_search_message_size/{searchData}")
 	public @ResponseBody int getSearchMessageSize(@PathVariable String searchData) {
 		int size = service.selectSearchMessageSize(searchData);
 		
