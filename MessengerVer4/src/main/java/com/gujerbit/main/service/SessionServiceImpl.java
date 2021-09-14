@@ -31,9 +31,11 @@ public class SessionServiceImpl implements SessionService {
 		JwtBuilder builder = Jwts.builder();
 		builder.setHeaderParam("typ", "JWT"); //type jwt token
 		//setSubject => token title 설정
-		//setExpiration => token 유효 기간
+		
 		//claim => jwt token에 담고 싶은 정보를 담기
-		builder.setSubject("token").setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * expireMin)).claim("User", user);
+		builder.setSubject("token").claim("User", user);
+		//setExpiration => token 유효 기간
+//		setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * expireMin));
 		//secret key를 이용한 암호화
 		builder.signWith(SignatureAlgorithm.HS256, salt.getBytes());
 		//직렬화

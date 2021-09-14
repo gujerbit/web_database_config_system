@@ -1,5 +1,7 @@
 package com.gujerbit.main.interceptor;
 
+import java.util.Enumeration;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -23,11 +25,10 @@ public class SessionInterceptor implements HandlerInterceptor {
 			throws Exception {
 		System.out.println(request.getMethod() + " : " + request.getServletPath());
 		//option 요청은 바로 통과
-		if(request.getMethod().equals("OPTION")) {
+		if(request.getMethod().equals("OPTIONS")) {
 			return true;
 		}
 		else {
-			//request parameter에서 auth_token으로 넘어온 것을 찾는다
 			String token = request.getHeader("jwt-auth-token");
 			
 			if(token != null && token.length() > 0) {

@@ -4,12 +4,12 @@
         <p class="user-id">{{storage.getItem('id')}}님 접속중</p>
         <div class="logout-btn" @click="logout()">로그아웃</div>
       </div>
-      <view-message-component />
+      <view-database-component />
   </main>
 </template>
 
 <script>
-import viewMessageComponent from './ViewMessageComponent.vue';
+import viewDatabaseComponent from './ViewDatabaseComponent.vue';
 
 export default {
     data() {
@@ -30,7 +30,7 @@ export default {
         }
     },
     components: {
-        viewMessageComponent
+        viewDatabaseComponent
     }
 }
 </script>

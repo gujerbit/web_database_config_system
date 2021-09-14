@@ -25,14 +25,14 @@ public class MessengerVer4Application implements WebMvcConfigurer {
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		//적용 경로
-		registry.addInterceptor(interceptor).addPathPatterns("").excludePathPatterns(Arrays.asList("/user/**", "/view/**"));
+		registry.addInterceptor(interceptor).addPathPatterns("/view/**").excludePathPatterns(Arrays.asList("/user/**"));
 		//적용 제외 경로
 		//.excludePathPatterns(Arrays.asList(""))
 	}
 	
 	@Override
 	public void addCorsMappings(CorsRegistry registry) {
-		registry.addMapping("/**").allowedOrigins("*").allowedMethods("*").allowedHeaders("*").exposedHeaders("jwt-auth-token");
+		registry.addMapping("/**").allowedOrigins("*").allowedMethods("*").allowedHeaders("*").exposedHeaders("jwt-auth-token");;
 	}
 
 }
