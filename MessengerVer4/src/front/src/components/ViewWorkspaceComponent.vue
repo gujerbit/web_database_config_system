@@ -32,16 +32,28 @@ export default {
                 'jwt-auth-token': this.storage.getItem('jwt-auth-token')
             };
             if('select'.toUpperCase() === this.query.split(' ')[0].toUpperCase()) {
-                let { data } = await this.axios.post('/query/select', {query: this.query}, {header});
-                this.result = data;
+                try {
+                    let { data } = await this.axios.post('/query/select', {query: this.query}, {header});
+                    this.result = data;
+                } catch (error) {
+                    this.result = [{res: 'error!'}]
+                }
             } else if('insert'.toUpperCase() === this.query.split(' ')[0].toUpperCase()
             || 'update'.toUpperCase() === this.query.split(' ')[0].toUpperCase()
             || 'delete'.toUpperCase() === this.query.split(' ')[0].toUpperCase()) {
-                let { data } = await this.axios.post('/query/manipulation', {query: this.query}, {header});
-                this.result = [{res: `Query OK, ${data} rows affected`}];
+                try {
+                    let { data } = await this.axios.post('/query/manipulation', {query: this.query}, {header});
+                    this.result = [{res: `Query OK, ${data} rows affected`}];
+                } catch (error) {
+                    this.result = [{res: 'error!'}]
+                }
             } else {
-                let { data } = await this.axios.post('/query/definition', {query: this.query}, {header});
-                if(data) this.result = [{res: 'Query OK, 0 rows affected'}];
+                try {
+                    let { data } = await this.axios.post('/query/definition', {query: this.query}, {header});
+                    if(data) this.result = [{res: 'Query OK, 0 rows affected'}];
+                } catch (error) {
+                    this.result = [{res: 'error!'}]
+                }
             }
         }
     },
