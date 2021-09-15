@@ -12,15 +12,10 @@ public class TableServiceImpl implements TableService {
 
 	@Autowired
 	private TableDAO dao;
-	
+
 	@Override
 	public List<String> selectViewTable(String db) {
 		return dao.selectViewTable(db);
 	}
-	
-	@Override
-	public List<String> selectTableContent(String table) {
-		return dao.selectTableContent(table);
-	}
-	
+
 }

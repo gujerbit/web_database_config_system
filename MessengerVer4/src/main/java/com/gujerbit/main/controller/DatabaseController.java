@@ -2,8 +2,6 @@ package com.gujerbit.main.controller;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -20,7 +18,7 @@ public class DatabaseController {
 	private DatabaseServiceImpl service;
 	
 	@PostMapping("/view/view_database")
-	public @ResponseBody List<String> getViewDatabase(HttpServletRequest req) {
+	public @ResponseBody List<String> getViewDatabase() {
 		List<String> list = service.selectViewDatabase();
 		
 		return list;

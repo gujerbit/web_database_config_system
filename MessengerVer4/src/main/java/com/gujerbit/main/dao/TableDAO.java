@@ -9,6 +9,4 @@ public interface TableDAO {
 
 	public List<String> selectViewTable(String db);
 	
-	public List<String> selectTableContent(String table);
-	
 }

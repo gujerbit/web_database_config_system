@@ -1,16 +1,24 @@
 <template>
-  <div class="wrap">
-      <div class="result">
-          
-      </div>
-  </div>
+    <div class="result">
+        <template v-if="result === ''">
+            <div class="content" v-for="value in content" :key="value">
+                <p class="element" v-for="item in Object.keys(value)" :key="item">
+                        <pre>{{item + ' : ' + value[item]}}</pre>
+                </p>
+            </div>
+        </template>
+        <div class="content" v-for="value in result" :key="value">
+            <p class="element" v-for="item in Object.keys(value)" :key="item">
+                <pre>{{item + ' : ' + value[item]}}</pre>
+            </p>
+        </div>
+    </div>
 </template>
 
 <script>
 export default {
     data() {
         return {
-
         }
     },
     async mounted() {
@@ -19,13 +27,20 @@ export default {
     methods: {
 
     },
-    props: ['']
+    props: ['content', 'result']
 }
 </script>
 
 <style scoped>
-.wrap {
+.result {
     border: 2px solid #000000;
-    margin: 1%;
+    overflow: auto;
+    width: 800px;
+    height: 300px;
+}
+
+.content:nth-child(2n) {
+    background-color: #000000;
+    color: #ffffff;
 }
 </style>

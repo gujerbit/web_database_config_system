@@ -6,6 +6,4 @@ public interface TableService {
 
 	List<String> selectViewTable(String db);
 	
-	List<String> selectTableContent(String table);
-	
 }

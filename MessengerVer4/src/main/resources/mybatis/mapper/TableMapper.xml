@@ -4,8 +4,4 @@
 	<select id="selectViewTable" resultType="string">
 		SHOW TABLES FROM ${db}
 	</select>
-	
-	<select id="selectTableContent" resultType="string">
-		SELECT * FROM ${table}
-	</select>
 </mapper>

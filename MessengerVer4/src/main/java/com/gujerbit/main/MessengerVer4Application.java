@@ -25,7 +25,7 @@ public class MessengerVer4Application implements WebMvcConfigurer {
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		//적용 경로
-		registry.addInterceptor(interceptor).addPathPatterns("/view/**").excludePathPatterns(Arrays.asList("/user/**"));
+		registry.addInterceptor(interceptor).addPathPatterns("/view/**").excludePathPatterns(Arrays.asList("/user/**", "/query/**", "/view"));
 		//적용 제외 경로
 		//.excludePathPatterns(Arrays.asList(""))
 	}
